@@ -13,13 +13,13 @@ class Palladium
 
   def set_result(options = {})
     request = Net::HTTP::Post.new('/api/result_new', 'Authorization' => @token)
-    params = {:'plan_data[product_name]' => @product,
-              :'plan_data[name]' => @plan,
-              :'run_data[name]' => 'multiplication_products1',
-              :'result_set_data[name]' => options[:name],
-              :'result_data[message]' => options[:description],
-              :'result_data[status]' => options[:status]}
-    params.merge!({'result_set_data[run_id]': @run_id}) unless @run_id.nil?
+    params = { 'plan_data[product_name]' => @product,
+               'plan_data[name]' => @plan,
+               'run_data[name]' => 'multiplication_products1',
+               'result_set_data[name]' => options[:name],
+               'result_data[message]' => options[:description],
+               'result_data[status]' => options[:status] }
+    params.merge!({ 'result_set_data[run_id]' => @run_id }) unless @run_id.nil?
     request.set_form_data(params)
     @run_id = JSON.parse(@http.request(request).body)['run_id']
   end
