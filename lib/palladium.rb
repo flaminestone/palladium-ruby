@@ -21,6 +21,8 @@ class Palladium
                'result_data[status]' => options[:status] }
     params.merge!({ 'result_set_data[run_id]' => @run_id }) unless @run_id.nil?
     request.set_form_data(params)
-    @run_id = JSON.parse(@http.request(request).body)['run_id']
+    result = JSON.parse(@http.request(request).body)
+    @run_id = result['run_id']
+    result
   end
 end
