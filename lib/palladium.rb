@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 class Palladium
   def initialize(options = {})
-    options[:port] ||= 8080
+    options[:port] ||= 80
     @http = Net::HTTP.new(options[:host], options[:port])
     @product = options[:product]
     @plan = options[:plan]
@@ -19,7 +19,7 @@ class Palladium
                'result_set_data[name]' => options[:name],
                'result_data[message]' => options[:description],
                'result_data[status]' => options[:status] }
-    params.merge!({ 'result_set_data[run_id]' => @run_id }) unless @run_id.nil?
+    params['result_set_data[run_id]'] = @run_id unless @run_id.nil?
     request.set_form_data(params)
     result = JSON.parse(@http.request(request).body)
     @run_id = result['run_id']

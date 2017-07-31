@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'flamine@list.ru'
   s.files       = ['lib/palladium.rb']
   s.homepage    =
-      'http://rubygems.org/gems/palladium'
+    'http://rubygems.org/gems/palladium'
   s.license     = 'MIT'
 end
