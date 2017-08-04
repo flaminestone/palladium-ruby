@@ -1,6 +1,6 @@
 require 'net/http'
 require 'json'
-class Palladium
+class Palladium_Ruby
   def initialize(options = {})
     options[:port] ||= 80
     @http = Net::HTTP.new(options[:host], options[:port])
